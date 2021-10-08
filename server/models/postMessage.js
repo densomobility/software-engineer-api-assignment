@@ -26,7 +26,8 @@ const postSchema = mongoose.Schema({
             type:Date,
             default: new Date()
         },
-        condition:String
+        condition:String,
+        price:Number
     }
 
 });
