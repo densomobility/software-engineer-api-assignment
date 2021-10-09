@@ -3,32 +3,23 @@ import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
     title:String,
     message:String,
-    user: {
-        firstName: String,
-        lastName: String,
-        createdAt:{
-            type:Date,
-            default: new Date()
-        }
+    createdAt:{
+        type:Date,
+        default: new Date()
     },
+    creator:String,
     board:{
-        owner:{
-            firstName: String,
-            lastName: String
-        },
         brand:String,
         weight:Number,
-        location:{
-            State:String,
-            City:String
-        },
-        age:{
-            type:Date,
-            default: new Date()
-        },
         condition:String,
         price:Number
-    }
+    },
+    location:{
+        State:String,
+        City:String
+    },
+    availability:String,
+    selectedFile:String
 
 });
 

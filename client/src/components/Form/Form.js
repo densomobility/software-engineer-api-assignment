@@ -4,7 +4,7 @@ import useStyles from './styles';
 import { TextField,Button,Typography,Paper } from '@material-ui/core';
 const Form = () => {
     const [postData,setPostData]= useState({
-        creator:'',title:'',message:'',selectedFile:''
+        creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:null,condition:'',price:null},location:{State:'',City:''},availability:''
     });
 
     const classes = useStyles();
@@ -21,8 +21,18 @@ const Form = () => {
            <form autoComplete='off' noValidate className={'${classes.root} ${classes.form}'} onSubmit={handleSubmit}>
                 <Typography variant="h6">Creating a SkateBoard</Typography>
                 <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e)=>setPostData({...postData,creator:e.target.value})}/>
-                <TextField name="title" variant="outlined" label="title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData,title:e.target.value})}/>
-                <TextField name="message" variant="outlined" label="message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData,message:e.target.value})}/>
+                <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData,title:e.target.value})}/>
+                <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData,message:e.target.value})}/>
+
+                <TextField name="brand" variant="outlined" label="Brand" fullWidth value={postData.board.brand} onChange={(e)=>setPostData({...postData,board:{...postData.board,brand:e.target.value}})}/>
+                <TextField name="weight" variant="outlined" label="Weight" fullWidth value={postData.board.weight} onChange={(e)=>setPostData({...postData,board:{...postData.board,weight:e.target.value}})}/>
+                <TextField name="condition" variant="outlined" label="Condition" fullWidth value={postData.board.condition} onChange={(e)=>setPostData({...postData,board:{...postData.board,condition:e.target.value}})}/>
+                <TextField name="price" variant="outlined" label="Price" fullWidth value={postData.board.price} onChange={(e)=>setPostData({...postData,board:{...postData.board,price:e.target.value}})}/>
+
+                <TextField name="state" variant="outlined" label="State" fullWidth value={postData.location.State} onChange={(e)=>setPostData({...postData,location:{...postData.location,State:e.target.value}})}/>
+                <TextField name="city" variant="outlined" label="City" fullWidth value={postData.location.City} onChange={(e)=>setPostData({...postData,location:{...postData.location,City:e.target.value}})}/>
+
+                <TextField name="availability" variant="outlined" label="Availability" fullWidth value={postData.availability} onChange={(e)=>setPostData({...postData,availability:e.target.value})}/>
                 <div className={classes.fileInput}>
                     <FileBase type='file' multiple={false} onDone={({base64})=>setPostData({...postData,selectedFile:base64})}/>
                 </div>
