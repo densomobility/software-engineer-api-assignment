@@ -1,16 +1,24 @@
-import {useState} from 'react';
+import { React,useState } from 'react';
 import FileBase from 'react-file-base64';
+import { useDispatch } from 'react-redux';
 import useStyles from './styles';
+import { createPost } from '../../actions/posts';
 import { TextField,Button,Typography,Paper } from '@material-ui/core';
 const Form = () => {
     const [postData,setPostData]= useState({
-        creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:null,condition:'',price:null},location:{State:'',City:''},availability:''
+        creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:'',condition:'',price:''},location:{State:'',City:''},availability:''
     });
 
     const classes = useStyles();
+    const dispatch = useDispatch();
 
-    const handleSubmit = ()=>{
-
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        console.log("attempting to create a post");
+        //setPostData({...postData,board:{...postData.board,weight:Number(postData.board.weight)}});
+        //setPostData({...postData,board:{...postData.board,price:Number(postData.board.price)}});
+        console.log(postData);
+        dispatch(createPost(postData));
     }
     const clear = () =>{
 
@@ -25,9 +33,9 @@ const Form = () => {
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData,message:e.target.value})}/>
 
                 <TextField name="brand" variant="outlined" label="Brand" fullWidth value={postData.board.brand} onChange={(e)=>setPostData({...postData,board:{...postData.board,brand:e.target.value}})}/>
-                <TextField name="weight" variant="outlined" label="Weight" fullWidth value={postData.board.weight} onChange={(e)=>setPostData({...postData,board:{...postData.board,weight:e.target.value}})}/>
+                <TextField name="weight" variant="outlined" label="Weight(lb)" fullWidth value={postData.board.weight} onChange={(e)=>setPostData({...postData,board:{...postData.board,weight:Number(e.target.value)}})}/>
                 <TextField name="condition" variant="outlined" label="Condition" fullWidth value={postData.board.condition} onChange={(e)=>setPostData({...postData,board:{...postData.board,condition:e.target.value}})}/>
-                <TextField name="price" variant="outlined" label="Price" fullWidth value={postData.board.price} onChange={(e)=>setPostData({...postData,board:{...postData.board,price:e.target.value}})}/>
+                <TextField name="price" variant="outlined" label="Price($)" fullWidth value={postData.board.price} onChange={(e)=>setPostData({...postData,board:{...postData.board,price:Number(e.target.value)}})}/>
 
                 <TextField name="state" variant="outlined" label="State" fullWidth value={postData.location.State} onChange={(e)=>setPostData({...postData,location:{...postData.location,State:e.target.value}})}/>
                 <TextField name="city" variant="outlined" label="City" fullWidth value={postData.location.City} onChange={(e)=>setPostData({...postData,location:{...postData.location,City:e.target.value}})}/>
