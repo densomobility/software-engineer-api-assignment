@@ -14,16 +14,18 @@ const Form = ({currentId,setCurrentId}) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
+        console.log(post);
         if(post) setPostData(post);
     },[post])
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log("attempting to create a post");
         if(currentId){
+            console.log("attempting to update a post");
             dispatch(updatePost(currentId,postData));
         }
         else{
+            console.log("attempting to create a post");
             dispatch(createPost(postData));
         }
         //setPostData({...postData,board:{...postData.board,weight:Number(postData.board.weight)}});
