@@ -2,9 +2,10 @@ import { React,useState } from 'react';
 import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import { createPost } from '../../actions/posts';
+import { createPost,updatePost } from '../../actions/posts';
 import { TextField,Button,Typography,Paper } from '@material-ui/core';
-const Form = () => {
+import { updatePost } from '../../../../server/controllers/posts';
+const Form = ({currentId,setCurrentId}) => {
     const [postData,setPostData]= useState({
         creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:'',condition:'',price:''},location:{State:'',City:''},availability:''
     });
@@ -15,10 +16,16 @@ const Form = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log("attempting to create a post");
+        if(currentId){
+            dispatch(updatePost(currentId,postData));
+        }
+        else{
+            dispatch(createPost(postData));
+        }
         //setPostData({...postData,board:{...postData.board,weight:Number(postData.board.weight)}});
         //setPostData({...postData,board:{...postData.board,price:Number(postData.board.price)}});
         console.log(postData);
-        dispatch(createPost(postData));
+        
     }
     const clear = () =>{
 
