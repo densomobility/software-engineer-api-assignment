@@ -1,4 +1,4 @@
-import express from 'express';
+//import express from 'express';
 import  mongoose  from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
@@ -21,7 +21,7 @@ export const createPost = async (req,res)=>{
     try{
         await newPost.save();
         res.status(201).json(newPost);
-    }catch(err){
+    }catch(error){
         res.status(409).json({message:error.message});
     }
 }
