@@ -11,12 +11,17 @@ const Post = ({post}) => {
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
             <div className={classes.overlay}>
                 <Typography variant='h6'>{post.creator}</Typography>
+                <Typography variant='h5'>${post.board.price}</Typography>
                 <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
                 <Button style={{color:'white'}} size='small' onclick={()=>{}}>
                     <MoreHorizIcon fontSize='default' />
                 </Button>
+            </div>
+            <div className={classes.details}>
+                <Typography variant='body2' color='textSecondary'>{post.board.brand}</Typography>
+                <Typography variant='body2' color='textSecondary'>{post.board.condition}</Typography>
             </div>
             <CardContent className={classes.title}>
                 <Typography variant='h5' gutterBottom>{post.message}</Typography>
