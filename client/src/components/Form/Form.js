@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import useStyles from './styles';
 import { createPost,updatePost } from '../../actions/posts';
 import { TextField,Button,Typography,Paper } from '@material-ui/core';
-import { updatePost } from '../../../../server/controllers/posts';
+//import { updatePost } from '../../../../server/controllers/posts';
 const Form = ({currentId,setCurrentId}) => {
     const [postData,setPostData]= useState({
         creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:'',condition:'',price:''},location:{State:'',City:''},availability:''
