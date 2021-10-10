@@ -1,4 +1,4 @@
-import { React,useState } from 'react';
+import { React,useState,useEffect } from 'react';
 import FileBase from 'react-file-base64';
 import { useDispatch,useSelector } from 'react-redux';
 import useStyles from './styles';
@@ -12,6 +12,10 @@ const Form = ({currentId,setCurrentId}) => {
     const post = useSelector((state)=>currentId?state.posts.find((p)=>p._id === currentId):null);
     const classes = useStyles();
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+        if(post) setPostData(post);
+    },[post])
 
     const handleSubmit = (e)=>{
         e.preventDefault();
