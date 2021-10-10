@@ -1,6 +1,6 @@
 import { React,useState } from 'react';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import useStyles from './styles';
 import { createPost,updatePost } from '../../actions/posts';
 import { TextField,Button,Typography,Paper } from '@material-ui/core';
@@ -9,7 +9,7 @@ const Form = ({currentId,setCurrentId}) => {
     const [postData,setPostData]= useState({
         creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:'',condition:'',price:''},location:{State:'',City:''},availability:''
     });
-
+    const post = useSelector((state)=>currentId?state.posts.find((p)=>p._id === currentId):null);
     const classes = useStyles();
     const dispatch = useDispatch();
 
