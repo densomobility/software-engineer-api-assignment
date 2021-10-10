@@ -23,8 +23,9 @@ const Post = ({post,setCurrentId}) => {
                 <Typography variant='body2' color='textSecondary'>{post.board.brand}</Typography>
                 <Typography variant='body2' color='textSecondary'>{post.board.condition}</Typography>
             </div>
-            <CardContent className={classes.title}>
-                <Typography variant='h5' gutterBottom>{post.message}</Typography>
+            <Typography className={classes.title} variant='h5' gutterBottom>{post.title}</Typography>
+            <CardContent >
+                <Typography  gutterBottom>{post.message}</Typography>
             </CardContent>
             <CardActions>
                 <Button size='small' color='primary' onClick={()=>{} }>

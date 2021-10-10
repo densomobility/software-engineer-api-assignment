@@ -28,6 +28,7 @@ const Form = ({currentId,setCurrentId}) => {
             console.log("attempting to create a post");
             dispatch(createPost(postData));
         }
+        clear();
         //setPostData({...postData,board:{...postData.board,weight:Number(postData.board.weight)}});
         //setPostData({...postData,board:{...postData.board,price:Number(postData.board.price)}});
         console.log(postData);
@@ -38,7 +39,7 @@ const Form = ({currentId,setCurrentId}) => {
         setPostData({
             creator:'',title:'',message:'',selectedFile:'',board:{brand:'',weight:'',condition:'',price:''},location:{State:'',City:''},availability:''
         });
-        
+
     }
 
     return (
