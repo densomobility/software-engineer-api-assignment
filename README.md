@@ -42,7 +42,8 @@ I will break it down per user stories
 
 **As a skateboard borrower, I want to see a list of available boards**
 Use GET to https://skateboard-rest-api.herokuapp.com/posts
-![stack Overflow](https://imgur.com/a/LIb5iuP)
+
+Screenshot:https://prnt.sc/1vo3bgm
 
 **As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.**
 Use POST to https://skateboard-rest-api.herokuapp.com/posts
@@ -74,20 +75,20 @@ In the body, choose JSON and follow format below (add your own base64 string)
 **As a skateboard owner I want to be able to indicate that my board is available or unavailable for sharing**
 Use PATCH to https://skateboard-rest-api.herokuapp.com/posts/avl/61637ab676cd9a9cbba79a56  (where the last parameter is a mongodb id )
 In the body, choose JSON and follow format below (change to Available or UnAvailable)
-![Screenshot](https://prnt.sc/1vo53xk)
+Screenshot:https://prnt.sc/1vo53xk
 
 **As a skateboard owner I want to be able to modify the details for the board that I share.**
 Use PATCH to https://skateboard-rest-api.herokuapp.com/posts/61637ab676cd9a9cbba79a56  (where the last parameter is a mongodb id )
 In the body, choose JSON and follow format similar to adding a new board
-![Screenshot](https://prnt.sc/1vo64ro)
+Screenshot:https://prnt.sc/1vo64ro
 
 **Extra: As a skateboard owner I want to see a specific board**
 Use GET to https://skateboard-rest-api.herokuapp.com/posts/61637ab676cd9a9cbba79a56
-![Screenshot](https://prnt.sc/1vo754v)
+Screenshot:https://prnt.sc/1vo754v
 
 **Extra: As a skateboard owner I want to delete any of my board**
 Use DELETE https://skateboard-rest-api.herokuapp.com/posts/61637ab676cd9a9cbba79a56 (where the last parameter is a mongodb id )
-![Screenshot](https://prnt.sc/1vo6tgk)
+Screenshot:https://prnt.sc/1vo6tgk
 
 Keep in mind that the mongodb id's here might have been deleted already, please create a post and use it's id to do the test.
 
@@ -98,16 +99,16 @@ I will break it down per user stories
 
 **As a skateboard borrower, I want to see a list of available boards**
 The homePage will only show skateboards that has availability property set to "Available"
-![Screenshot](https://prnt.sc/1vo7nmw)
+Screenshot:https://prnt.sc/1vo7nmw
 
 **As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.**
 Use the form at the right side and fill in the input box and choose file, then press submit
-![Screenshot](https://prnt.sc/1vo86m9)
+Screenshot:https://prnt.sc/1vo86m9
 
 **As a skateboard owner I want to be able to indicate that my board is available or unavailable for sharing**
 click the 3 white dots on a specific post, the form will change from 'Creating a SkateBoard' to  'Editing a skateBoard'
 and will autofill the form for you. To change availability, simply change Availability inputbox to either 'Available' or 'UnAvailable'
-![Screenshot](https://prnt.sc/1vo8ath)
+Screenshot:https://prnt.sc/1vo8ath
 
 **As a skateboard owner I want to be able to modify the details for the board that I share.**
 The same procedure above
