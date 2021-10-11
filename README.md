@@ -42,7 +42,7 @@ I will break it down per user stories
 
 **As a skateboard borrower, I want to see a list of available boards**
 Use GET to https://skateboard-rest-api.herokuapp.com/posts
-![Screenshot](https://prnt.sc/1vo3bgm)
+![stack Overflow](http://lmsotfy.com/so.png)
 
 **As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.**
 Use POST to https://skateboard-rest-api.herokuapp.com/posts
