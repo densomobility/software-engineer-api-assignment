@@ -4,7 +4,9 @@ const router = express.Router();
 
 // localhost:5000/posts
 //
+//As a skateboard borrower, I want to see a list of available boards
 router.get('/', getPosts);
+
 router.get('/:id',getPost);
 
 //As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.
