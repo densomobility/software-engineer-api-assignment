@@ -1,0 +1,54 @@
+{
+    "skateboardId":"10011",
+    "owner": "Tim",
+    "brand": "Santa Cruz",
+    "color": "Blue",
+    "condition": "Like New",
+    "stat": "Available",
+    "image" : "https://drive.google.com/file/d/1NpvLYr2py2FS5E3f30cG9eG2d3bOV7oW/view?usp=sharing"
+}
+{
+    "skateboardId":"10022",
+    "owner": "John",
+    "brand": "Plan B",
+    "color": "Purple",
+    "condition": "Poor",
+    "stat": "Unavailable",
+    "image" : "https://drive.google.com/file/d/1rFu1VDtGRBElWhDIGeBMksi8ZxdEGDLJ/view?usp=sharing"
+}
+{
+    "skateboardId":"10033",
+    "owner": "Mark",
+    "brand": "Zero",
+    "color": "Green",
+    "condition": "New",
+    "stat": "Available",
+    "image" : "https://drive.google.com/file/d/1fVpv7-VD2Ro6KEiA-XcadJ5ByIxvZx15/view?usp=sharing"
+}
+{
+    "skateboardId":"10044",
+    "owner": "Luke",
+    "brand": "Element",
+    "color": "Red",
+    "condition": "Good",
+    "stat": "Available",
+    "image" : "https://drive.google.com/file/d/1YzgwAfeTzEAUMpOEnQQrDmv9T3DZMZ5/view?usp=sharing"
+}
+{
+    "skateboardId": "10055",
+    "owner": "Sam",
+    "brand": "Zero",
+    "color": "Yellow",
+    "condition": "New",
+    "stat": "Available",
+    "image": "https://drive.google.com/file/d/1yKxMBTvtkX2HnfN2rmB9FwcVjlxeum1z/view?usp=sharing"
+}
+{
+    "skateboardId":"10066",
+    "owner": "Jane",
+    "brand": "DGK",
+    "color": "Black",
+    "condition": "New",
+    "stat": "Available",
+    "image" : "https://drive.google.com/file/d/1O9PmemuQHKnPk_i-Z-iqGs-Vyj53KJUO/view?usp=sharing"
+}   
