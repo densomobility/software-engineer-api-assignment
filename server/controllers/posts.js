@@ -36,6 +36,21 @@ export const updatePost = async (req,res)=>{
     res.json(updatedPost);
 }
 
+export const updatePostAvl = async (req,res)=>{
+    const {id:_id} = req.params;
+    const post = req.body;
+    console.log(post.availability);
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+
+    try{
+        const updatedPost = await PostMessage.updateOne({_id},{$set:{availability:post.availability}})
+        res.json(updatedPost);
+    }catch(error){
+
+    }
+
+}
+
 export const deletePost = async(req,res)=>{
     const{id} = req.params;
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
