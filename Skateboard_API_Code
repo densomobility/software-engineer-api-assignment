@@ -1,0 +1,156 @@
+const AWS = require('aws-sdk');
+	AWS.config.update( {
+	  region: 'us-east-2'
+	});
+	const dynamodb = new AWS.DynamoDB.DocumentClient();
+	const dynamodbTableName = 'skateboard-inventory';
+	const healthPath = '/health';
+	const skateboardPath = '/skateboard';
+	const skateboardsPath = '/skateboards';
+	
+
+	exports.handler = async function(event) {
+	  console.log('Request event: ', event);
+	  let response;
+	  switch(true) {
+	    case event.httpMethod === 'GET' && event.path === healthPath:
+	      response = buildResponse(200);
+	      break;
+	    case event.httpMethod === 'GET' && event.path === skateboardPath:
+	      response = await getSkateboard(event.queryStringParameters.skateboardId);
+	      break;
+	    case event.httpMethod === 'GET' && event.path === skateboardsPath:
+	      response = await getSkateboards();
+	      break;
+	    case event.httpMethod === 'POST' && event.path === skateboardPath:
+	      response = await saveSkateboard(JSON.parse(event.body));
+	      break;
+	    case event.httpMethod === 'PATCH' && event.path === skateboardPath:
+	      const requestBody = JSON.parse(event.body);
+	      response = await modifySkateboard(requestBody.skateboardId, requestBody.updateKey, requestBody.updateValue);
+	      break;
+	    case event.httpMethod === 'DELETE' && event.path === skateboardPath:
+	      response = await deleteSkateboard(JSON.parse(event.body).skateboardId);
+	      break;
+	    default:
+	      response = buildResponse(404, '404 Not Found');
+	  }
+	  return response;
+	}
+	
+
+	async function getSkateboard(skateboardId) {
+	  const params = {
+	    TableName: dynamodbTableName,
+	    Key: {
+	      'skateboardId': skateboardId
+	    }
+	  }
+	  return await dynamodb.get(params).promise().then((response) => {
+	    return buildResponse(200, response.Item);
+	  }, (error) => {
+	    console.error('Error getting skateboard ', error);
+	  });
+	}
+	
+
+	async function getSkateboards() {
+	  const params = {
+	    TableName: dynamodbTableName
+	  }
+	  const allSkateboards = await scanDynamoRecords(params, []);
+	  const body = {
+	    skateboards: allSkateboards
+	  }
+	  return buildResponse(200, body);
+	}
+	
+
+	async function scanDynamoRecords(scanParams, itemArray) {
+	  try {
+	    const dynamoData = await dynamodb.scan(scanParams).promise();
+	    itemArray = itemArray.concat(dynamoData.Items);
+	    if (dynamoData.LastEvaluatedKey) {
+	      scanParams.ExclusiveStartkey = dynamoData.LastEvaluatedKey;
+	      return await scanDynamoRecords(scanParams, itemArray);
+	    }
+	    return itemArray;
+	  } catch(error) {
+	    console.error('Error retrieving all skakateboards', error);
+	  }
+	}
+	
+
+	async function saveSkateboard(requestBody) {
+	  const params = {
+	    TableName: dynamodbTableName,
+	    Item: requestBody
+	  }
+	  return await dynamodb.put(params).promise().then(() => {
+	    const body = {
+	      Operation: 'SAVE',
+	      Message: 'Successfully Saved Skateboard',
+	      Item: requestBody
+	    }
+	    return buildResponse(200, body);
+	  }, (error) => {
+	    console.error('Error saving skateboard', error);
+	  })
+	}
+	
+
+	async function modifySkateboard(skateboardId, updateKey, updateValue) {
+	  const params = {
+	    TableName: dynamodbTableName,
+	    Key: {
+	      'skateboardId': skateboardId
+	    },
+	    UpdateExpression: `set ${updateKey} = :value`,
+	    ExpressionAttributeValues: {
+	      ':value': updateValue
+	    },
+	    ReturnValues: 'UPDATED_NEW'
+	  }
+	  return await dynamodb.update(params).promise().then((response) => {
+	    const body = {
+	      Operation: 'UPDATE',
+	      Message: 'Successfully Updated Skateboard',
+	      UpdatedAttributes: response,
+	    }
+	    return buildResponse(200, body);
+	  }, (error) => {
+	    console.error('Error modifying skateboard ', error);
+	  })
+	}
+	
+
+	async function deleteSkateboard(skateboardId) {
+	  const params = {
+	    TableName: dynamodbTableName,
+	    Key: {
+	      'skateboardId': skateboardId
+	    },
+	    ReturnValues: 'ALL_OLD'
+	  }
+	  return await dynamodb.delete(params).promise().then((response) => {
+	    const body = {
+	      Operation: 'DELETE',
+	      Message: 'Successfully Deleted Skateboard',
+	      Item: response
+	    }
+	    return buildResponse(200, body);
+	  }, (error) => {
+	    console.error('Error deleting skateboard ', error);
+	  })
+	}
+	
+
+	function buildResponse(statusCode, body) {
+	  return {
+	    statusCode: statusCode,
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify(body)
+	  }
+	}
