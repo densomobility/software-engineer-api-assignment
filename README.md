@@ -2,66 +2,121 @@
 
 ### Skateboard REST API
 
-In the shared mobility space, there are a number of different types of shared assets - cars, scooters, ebikes. For this project, we want to create a starting point for an API that will allow individual skateboarders to share their boards. 
+In this assignment I decided to go with the MERN stack technology.  I went with Heroku as my cloud application platform and Netlify to host my front-end. The front-end part 
+Link to my front-end:https://clever-ardinghelli-a6b180.netlify.app/
+link to the api:https://skateboard-rest-api.herokuapp.com/
 
-The goal of this project is to assess development skills suitable for a backend developer position by testing knowledge and proficiency with software design, unit testing and web technologies like HTTP and REST.
-
-- **Project Name:** Skateboard REST API
-- **Project Goal:** Create/define an API that will help skateboarders to share their 'boards'
-- **Technology:** Pick any language, framework and testing framework you like
-- **Deliverables:**  Fork the project into your own account. Submit a pull request on https://github.com/densomobility/software-engineer-api-assignment that includes your complete solution
-
-**Description: (Note: these stories are intentionally somewhat vague)**
-
-As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.
-
-As a skateboard owner I want to be able to indicate that my board is available or unavailable for sharing
-
-As a skateboard owner I want to be able to modify the details for the board that I share.
-
-As a skateboard borrower, I want to see a list of available boards
-
-**Task:** Build the REST API that might support the stories described above. Write unit tests for each component.
-
-**Requirements:**
-
-1. Design your API in a RESTful way and respond with JSON.
-1. Make sure your code has tests.
-1. Consider some form of logging
-1. Write the code and design your system to be as realistic and production-ready as possible. Follow best-practices and focus on quality.
-1. A skateboard might have the following attributes: name of owner, brand, weight, length, location, timestamp and any other attribution you deem necessary
-1. Add endpoints that support your solution 
-1. Try to keep track of the time spent on the project as this might be discussed
-1. Bonus points for adding any kind of front-end that can be used to visualize available boards through use of the designed APIs
-some examples:
- 
-  * **Create skateboard:**
-
-    - attributes for a board might include the photo, dimensions, specs etc.
-    - To keep things simple, no authentication needs to be performed. 
-
-  * **Get skateboards**
-    - perhaps based on status, spec filter etc.
-    
-  * **Update skateboard**
-    - change status, add additional details/specs etc.
-  
-  * **Delete skateboard**
-  
-  
- ....
-
-1. Describe your solution in a README and how to run it. Ensure that you clearly state assumptions that you made.
+### Server Side
+**Instructions for Deployment**
+This instruction is ment for deploying my server directory to Heroku, but the same logic can be applied to any cloud application platform. I've also provided the production-ready api above.
 
 
-**Guidelines**
+Install the Heroku CLI
+Download and install the Heroku CLI.
 
-Please commit early and often and with good commit messages. This will allow us to see how you've approached the problem. Don't worry about changing things around often.
+If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
 
-Be prepared to discuss some of your approaches and design decisions.
- 
-Please ask any questions if something is unclear
+$ heroku login
+Clone the repository
+Use Git to clone skateboard-rest-api's source code to your local machine.
+
+$ heroku git:clone -a skateboard-rest-api
+$ cd skateboard-rest-api
+Deploy your changes
+Make some changes to the code you just cloned and deploy them to Heroku using Git.
+
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+
+
+### Client Side
+**Instructions for Deployment**
+
+To run the client in localhost, make sure to have nodejs installed.
+Change directory to the client run npm install to install all modules listed in dependencies.
+See above for the client's link 
+
+### Using the API with Postman
+I will break it down per user stories
+
+**As a skateboard borrower, I want to see a list of available boards**
+Use GET to https://skateboard-rest-api.herokuapp.com/posts
+![get all availables](https://prnt.sc/1vo3bgm)
+
+**As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.**
+Use POST to https://skateboard-rest-api.herokuapp.com/posts
+In the body, choose JSON and follow format below (add your own base64 string)
+	
+	{
+        "board": {
+            "brand": "Metroller",
+            "weight": 11,
+            "condition": "New",
+            "price": 35
+        },
+        "location": {
+            "State": "Michigan",
+            "City": "Detriot"
+        },
+        "_id": "61637ab676cd9a9cbba79a56",
+        "title": "Metroller Advance",
+        "message": "Standard Skate Boards (Advance)",
+        "createdAt": "2021-10-10T04:02:12.112Z",
+        "creator": "Amazon",
+        "availability": "Available",
+        "selectedFile": "base64 string here",
+        "__v": 0
+    }
+
+![create a post](https://prnt.sc/1vo4lvy)
+
+**As a skateboard owner I want to be able to indicate that my board is available or unavailable for sharing**
+Use PATCH to https://skateboard-rest-api.herokuapp.com/posts/avl/61637ab676cd9a9cbba79a56  (where the last parameter is a mongodb id )
+In the body, choose JSON and follow format below (change to Available or UnAvailable)
+![create a post](https://prnt.sc/1vo53xk)
+
+**As a skateboard owner I want to be able to modify the details for the board that I share.**
+Use PATCH to https://skateboard-rest-api.herokuapp.com/posts/61637ab676cd9a9cbba79a56  (where the last parameter is a mongodb id )
+In the body, choose JSON and follow format similar to adding a new board
+![create a post](https://prnt.sc/1vo64ro)
+
+**Extra: As a skateboard owner I want to see a specific board**
+Use GET to https://skateboard-rest-api.herokuapp.com/posts/61637ab676cd9a9cbba79a56
+![get all availables](https://prnt.sc/1vo754v)
+
+**Extra: As a skateboard owner I want to delete any of my board**
+Use DELETE https://skateboard-rest-api.herokuapp.com/posts/61637ab676cd9a9cbba79a56 (where the last parameter is a mongodb id )
+![create a post](https://prnt.sc/1vo6tgk)
+
+Keep in mind that the mongodb id's here might have been deleted already, please create a post and use it's id to do the test.
+
+### Using the API with the client
+headover to https://clever-ardinghelli-a6b180.netlify.app/ or install locally using the direction I mentioned earlier
+
+I will break it down per user stories
+
+**As a skateboard borrower, I want to see a list of available boards**
+The homePage will only show skateboards that has availability property set to "Available"
+![get all availables](https://prnt.sc/1vo7nmw)
+
+**As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.**
+Use the form at the right side and fill in the input box and choose file, then press submit
+![create a post](https://prnt.sc/1vo86m9)
+
+**As a skateboard owner I want to be able to indicate that my board is available or unavailable for sharing**
+click the 3 white dots on a specific post, the form will change from 'Creating a SkateBoard' to  'Editing a skateBoard'
+and will autofill the form for you. To change availability, simply change Availability inputbox to either 'Available' or 'UnAvailable'
+![create a post](https://prnt.sc/1vo8ath)
+
+**As a skateboard owner I want to be able to modify the details for the board that I share.**
+The same procedure above
+
+
+**Extra: As a skateboard owner I want to delete any of my board**
+pick a post and simply click delete
+
+
 
 **What is this?**
-
-This repo contains the job assignment for potential Backend engineers in DENSO's New Mobility team.
+This is my solution to the Skateboard API REST Assignment
