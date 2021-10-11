@@ -19,5 +19,5 @@ const CONNECTION_URL ='mongodb+srv://jbcostan:P%40ssw0rd!@cluster0.fs5ci.mongodb
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>app.listen(PORT,()=>console.log('Server runnning on port: ${PORT}')))
+.then(()=>app.listen(PORT,()=>console.log(`Server runnning on port: http://localhost:${PORT}`)))
 .catch((error)=>console.log(error.message));
