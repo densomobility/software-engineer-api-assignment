@@ -70,7 +70,7 @@ In the body, choose JSON and follow format below (add your own base64 string)
         "__v": 0
     }
 
-![Screenshot](https://prnt.sc/1vo4lvy)
+Screenshot:https://prnt.sc/1vo4lvy
 
 **As a skateboard owner I want to be able to indicate that my board is available or unavailable for sharing**
 Use PATCH to https://skateboard-rest-api.herokuapp.com/posts/avl/61637ab676cd9a9cbba79a56  (where the last parameter is a mongodb id )
