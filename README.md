@@ -78,8 +78,8 @@ Since built-in browsable API is provided, didn't create front-end.<br />
       STATUS(string)<br />
 <br />
 - GET a particular skateboard based on ID:<br />
-   URL:http://127.0.0.1:8000/skateboard/api/skateboard/<ID>/<br />
-   Input: ID of the skateboard should be at the end of the URL<br />
+   URL:http://127.0.0.1:8000/skateboard/api/skateboard/ID/<br />
+   Input: Numerical ID of the skateboard should be at the end of the URL<br />
    Output:<br />
       ID(positive integer)<br />
       NAME_OWNER(string)<br />
@@ -105,8 +105,8 @@ Since built-in browsable API is provided, didn't create front-end.<br />
       STATUS(string)<br />
 <br />
 - PUT Update a particular skateboard:<br />
-   URL:http://127.0.0.1:8000/skateboard/api/skateboard/<ID>/<br />
-   Input: ID of the skateboard should be at the end of the URL.<br />
+   URL:http://127.0.0.1:8000/skateboard/api/skateboard/ID/<br />
+   Input: Numerical ID of the skateboard should be at the end of the URL.<br />
       At the bottom of the web page(http://127.0.0.1:8000/skateboard/api/skateboard/<ID>/), enter the input as a HTML form or JSON data and click on the "PUT" button.<br />
       Enter NAME_OWNER(string)<br />
       Enter BRAND(string) has to be one among "Baker", "Birdhouse" and "Krooked" values<br />
@@ -125,8 +125,8 @@ Since built-in browsable API is provided, didn't create front-end.<br />
      STATUS(string)<br />
 <br />
 - DELETE a particular skateboard:<br />
-		URL:http://127.0.0.1:8000/skateboard/api/skateboard/<ID>/<br />
-		Input: ID of the skateboard should be at the end of the URL. Click on the "DELETE" button to delete the current record.<br />
+    URL:http://127.0.0.1:8000/skateboard/api/skateboard/ID/<br />
+    Input: Numerical ID of the skateboard should be at the end of the URL. Click on the "DELETE" button to delete the current record.<br />
 		
 	
 	
