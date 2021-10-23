@@ -20,7 +20,9 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.SkateboardList.as_view(), name='skateboard'),
-    path('available/<int:available>/', views.SkateboardAvailable.as_view())
+    path('available/<int:available>/', views.SkateboardAvailable.as_view()),
+    path('user/<str:owner>/', views.SkateboardOwner.as_view()),
+    path('user/<str:owner>/<int:entry_id>/', views.SkateboardOwnerEntry.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
