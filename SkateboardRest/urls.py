@@ -19,7 +19,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from django.urls import path
 
 urlpatterns = [
-    path('', views.SkateboardList.as_view(), name='skateboard')
+    path('', views.SkateboardList.as_view(), name='skateboard'),
+    path('available/<int:available>/', views.SkateboardAvailable.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

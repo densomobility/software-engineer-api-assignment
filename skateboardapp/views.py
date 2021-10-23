@@ -16,3 +16,9 @@ class SkateboardList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class SkateboardAvailable(APIView):
+    def get(self, request, available, *args, **kwargs):
+        skateboard = Skateboard.objects.all().filter(availability=available)
+        serializer = SkateboardSerializer(skateboard, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
