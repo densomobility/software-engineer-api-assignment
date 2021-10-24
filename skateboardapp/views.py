@@ -24,8 +24,8 @@ class SkateboardAvailable(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class SkateboardOwner(APIView):
-    def get(self, request, owner_name, *args, **kwargs):
-        skateboard = Skateboard.objects.all().filter(owner=owner_name)
+    def get(self, request, owner, *args, **kwargs):
+        skateboard = Skateboard.objects.all().filter(owner=owner)
         serializer = SkateboardSerializer(skateboard, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
