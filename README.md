@@ -23,6 +23,7 @@ pip install djangorestframework
 ## Considerations for Future Improvement
 1. Address case sensitivity in URL
 2. Filter by skateboard type, spec, brand
+3. Improved JSON formatting
 
 ## Completed Stories
 <b>As a skateboard owner I want to be able to add my individual board to a skateboard sharing marketplace.</b>
